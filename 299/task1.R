@@ -8,13 +8,15 @@ replace_words <- \(words, sentence) {
     stringr::str_replace_all(acc, pattern = pat, replacement = nxt)
   }
   
-  # Reduce to get s vector
+  # Reduce to get a vector
   vec <- purrr::reduce(.x = words, .f = fn, .init = split)
   # Collapse to string
   res <- paste0(vec, collapse = " ")
   res
 }
 
+
+# -- TEST ---
 words <- c("cat", "bat", "rat")
 sentence <- "the cattle was rattle by the battery"
 replace_words(words, sentence)
