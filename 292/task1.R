@@ -1,17 +1,9 @@
-twice_largest <- \(vec) {
-  # Vector length
+twice_largest <- function(vec) {
   vec_len <- length(vec)
-  # Biggest value in vector
   biggest <- sort(vec)[vec_len]
-  # Index of biggest value
   biggest_ix <- match(biggest, vec)
-  # Vector sorted
   vec_sorted <- sort(vec)
-  # Which values in sorted vector are half size of less?
-  # Logical vector
   half_or_less <- vec_sorted[1:vec_len - 1] * 2 <= biggest
-  # Return index of biggest value if all are small enough
-  # If not, return -1
   if (all(half_or_less)) {
     largest_value <- vec_sorted[vec_len - 1]
     largest_value_ix <- match(largest_value, vec)

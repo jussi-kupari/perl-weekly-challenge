@@ -1,16 +1,15 @@
-replace_words <- \(words, sentence) {
+replace_words <- function(words, sentence) {
   # Split sentence to a vector of words
   split <- strsplit(sentence, " ")[[1]]
   
-  # Create function for reduce
-  fn <- \(acc, nxt) {
+  # Create reducer function
+  reducer <- \(acc, nxt) {
     pat <- paste0(nxt, ".*")
-    stringr::str_replace_all(acc, pattern = pat, replacement = nxt)
+    gsub(pattern = pat, replacement = nxt, acc)
   }
   
-  # Reduce to get a vector
-  vec <- purrr::reduce(.x = words, .f = fn, .init = split)
-  # Collapse to string
+  # Reduce and collapse to get a vector
+  vec <- Reduce(f = reducer, x = words, init = split) 
   res <- paste0(vec, collapse = " ")
   res
 }
